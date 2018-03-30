@@ -13,6 +13,15 @@ async function fetchPerson(url){
     const data = await result.json().then((data)=>data.results[0])
     return data;
   
+  
+ /* Skifter URL ved kald ved denne funktion, men ikke ved await fetch?
+ 
+ function fetchPerson(url) {
+  return fetch(url)
+      .then(res => res.json())
+      .then(data => data)
+};*/
+  
 }
 
 
