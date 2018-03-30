@@ -5,23 +5,23 @@ const URL = "https://swapi.co/api/people/";
 var now = require('performance-now');
 var start = now();
 var end = now();
-console.log((start.toFixed(3)))
-console.log((start-end).toFixed(3))
 
-async function fetchPerson(url,id){
-
+async function fetchPerson(url){
+  
     const result = await fetch(URL);
     //We are using the promise we get back to enter the Json-array, then we enter results and has access to all variables(We call the in printnames)
-    const data = await result.json().then((nameData)=>nameData.results[id-1])
+    const data = await result.json().then((data)=>data.results[0])
     return data;
+  
 }
 
 
   
 async function printNames() {
   console.log("Before");
-  const person1 = await fetchPerson(URL,1);
-  const person2 = await fetchPerson(URL,2);
+  console.log((start.toFixed(3)))
+  const person1 = await fetchPerson(URL+1);
+  const person2 = await fetchPerson(URL+2);
   // Calling all functions in parallel
   let finalResult =await Promise.all([person1.name, await person2.name])
   console.log(finalResult)
@@ -48,11 +48,11 @@ async function printNames2() {
 }
 
 
-printNames2().catch((e)=>{
+/* printNames2().catch((e)=>{
 
   console.log('There was an error :', e)
   
   //Time ranges from 138-152
-  });
+  }); */
 
 
