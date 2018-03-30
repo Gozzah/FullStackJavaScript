@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script language="JavaScript" type="text/javascript" src="ClosureCounter.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <button onclick="test1();">Count counter1</button>
+        <span id="c1"></span>
+        <button onclick="test2();" >Count counter2</button>
+        <span id="c2"></span>
+        
+        <script>
+            function test1(){
+                counter1.increment();
+                $("#c1").html(counter1.value());
+            }
+            function test2(){
+                counter2.increment();
+                $("#c2").html(counter2.value());
+            }
+        </script>
+</body>
+
+</html>
