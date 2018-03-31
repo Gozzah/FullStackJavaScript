@@ -1,42 +1,18 @@
 const fetch = require('node-fetch')
 const URL = "https://swapi.co/api/people/";
 
-
-var now = require('performance-now');
-var start = now();
-var end = now();
-
 async function fetchPerson(url){
   
-    const result = await fetch(URL);
-    //We are using the promise we get back to enter the Json-array, then we enter results and has access to all variables(We call the in printnames)
-    const data = await result.json().then((data)=>data.results[0])
-    return data;
-  
-  
- /* Skifter URL ved kald ved denne funktion, men ikke ved await fetch?
- 
- function fetchPerson(url) {
-  return fetch(url)
-      .then(res => res.json())
-      .then(data => data)
-};*/
-  
+    const result = await fetch(url);
+    const data = await result.json().then((data)=>data);
+    return data ;
 }
 
-
-  
 async function printNames() {
-  console.log("Before");
-  console.log((start.toFixed(3)))
   const person1 = await fetchPerson(URL+1);
   const person2 = await fetchPerson(URL+2);
-  // Calling all functions in parallel
-  let finalResult =await Promise.all([person1.name, await person2.name])
-  console.log(finalResult)
-  console.log("After all"); 
-  // The difference between the two functions, is only a few miliseconds. But imagine if we had 10.000 Http requests.. It's a big difference suddenly.
-  //time ranges from 136-138
+  let finalResult =await Promise.all([person1.name, await person2.name]);
+  console.log(finalResult);
 }
 
 printNames().catch((e)=>{
@@ -44,24 +20,3 @@ printNames().catch((e)=>{
   console.log('There was an error :', e)
   
   });
-
-async function printNames2() {
-  console.log("Before");
-  //With this approach person2, has to wait for person1 to finish
-  const person1 = await fetchPerson(URL,1);
-  const person2 = await fetchPerson(URL,2);
-  console.log(person1.name);
-  console.log(person2.name);
-  console.log("After all"); 
-  
-}
-
-
-/* printNames2().catch((e)=>{
-
-  console.log('There was an error :', e)
-  
-  //Time ranges from 138-152
-  }); */
-
-
