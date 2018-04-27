@@ -11,7 +11,7 @@ router.get("/cool", function(req, res, next){
 })
 
 router.get("/cool/RuneIsNotThatCool", function(req, res, next){
-  res.send("But Rune isn't")
+  res.send("But Rune is even more cool)
 })
 
 module.exports = router;
