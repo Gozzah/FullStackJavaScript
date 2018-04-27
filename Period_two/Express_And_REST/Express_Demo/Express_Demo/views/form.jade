@@ -1,0 +1,7 @@
+extends layout
+head
+    title= pageTitle
+block content
+    h1 Navne: #{names.join(",")}
+    form(method="post", action="/form")
+        input(type="text", name="name" ,placeholder="Your name")
